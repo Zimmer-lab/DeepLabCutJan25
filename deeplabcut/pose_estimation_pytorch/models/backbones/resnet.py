@@ -77,6 +77,7 @@ class ResNet(BaseBackbone):
                 If input size is (batch_size, 3, shape_x, shape_y), the output shape
                 will be (batch_size, 3, shape_x//16, shape_y//16)
         """
+        print(f"forward in ResNet BackBone")
         return self.model.forward_features(x)
 
 

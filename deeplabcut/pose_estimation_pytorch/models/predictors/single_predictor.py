@@ -95,6 +95,7 @@ class HeatmapPredictor(BasePredictor):
         if self.clip_scores:
             poses[..., 2] = torch.clip(poses[..., 2], min=0, max=1)
 
+        print(f"forward in Predictor")
         return {"poses": poses}
 
     def get_top_values(
@@ -117,6 +118,7 @@ class HeatmapPredictor(BasePredictor):
         heatmap_flat = heatmap.reshape(batchsize, nx * ny, num_joints)
         heatmap_top = torch.argmax(heatmap_flat, dim=1)
         y, x = heatmap_top // nx, heatmap_top % nx
+        print("get top values in Predictor")
         return y, x
 
     def get_pose_prediction(
@@ -159,4 +161,6 @@ class HeatmapPredictor(BasePredictor):
         pose[:, :, :, 0] = x
         pose[:, :, :, 1] = y
         pose[:, :, :, 2] = dz[:, :, :, 2]
+
+        print(f"single predictor in Predictor")
         return pose

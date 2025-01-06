@@ -93,6 +93,7 @@ class HeatmapHead(WeightConversionMixin, BaseHead):
         outputs = {"heatmap": self.heatmap_head(x)}
         if self.locref_head is not None:
             outputs["locref"] = self.locref_head(x)
+        print(f"forward in HeatmapHead")
         return outputs
 
     @staticmethod
@@ -123,6 +124,7 @@ class HeatmapHead(WeightConversionMixin, BaseHead):
             f"{module_prefix}locref_head.",
             locref_conversion,
         )
+        print("convert_weights in HeatmapHead")
         return state_dict
 
 
