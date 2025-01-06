@@ -23,7 +23,7 @@ if __name__ == '__main__':
     unique_bodyparts = model_cfg["metadata"]["unique_bodyparts"]
     with_identity = model_cfg["metadata"].get("with_identity", False)
     pose_task = Task(model_cfg["method"])
-    print(f"Pose task: {pose_task}")
+    print(f"Pose task: {pose_task}") # pose estimation is BOTTOM_UP
 
     # init runners
     pose_runner, detector_runner = get_inference_runners(
