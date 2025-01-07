@@ -46,9 +46,11 @@ if __name__ == '__main__':
     frame_number_total = iio.get_reader(video_path).count_frames()
     print(f"Total number of frames: {frame_number_total}")
 
+    pose_runner.device = 'cuda'
+
     # run inference
     inference_delays = []
-    for frame_number in range(200):
+    for frame_number in range(100):
         print(f"#{frame_number}")
         image = video_reader.get_data(frame_number)
         start_time = time.time()
