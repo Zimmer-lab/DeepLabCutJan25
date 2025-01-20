@@ -53,7 +53,7 @@ def train(
     transform: A.BaseCompose | None = None,
     inference_transform: A.BaseCompose | None = None,
     max_snapshots_to_keep: int | None = None,
-    load_head_weights: bool = True,
+    # load_head_weights: bool = True,
 ) -> None:
     """Builds a model from a configuration and fits it to a dataset
 
@@ -126,7 +126,7 @@ def train(
         device=device,
         gpus=gpus,
         snapshot_path=snapshot_path,
-        load_head_weights=load_head_weights,
+        # load_head_weights=load_head_weights,
         logger=logger,
     )
 
@@ -206,7 +206,7 @@ def train_network(
     device: str | None = None,
     snapshot_path: str | Path | None = None,
     detector_path: str | Path | None = None,
-    load_head_weights: bool = True,
+    # load_head_weights: bool = True,
     batch_size: int | None = None,
     epochs: int | None = None,
     save_epochs: int | None = None,
@@ -364,15 +364,52 @@ def train_network(
 
 
 if __name__ == "__main__":
+
+    # cfg_path = "/home/zimadmin/Documents/pose_estimation_models/pytorch/20230424_nn200_tip-sam_mobile/config.yaml"
+
+    # # parser = argparse.ArgumentParser()
+    # # parser.add_argument("--config-path", type=str)
+    # # parser.add_argument("--shuffle", type=int, default=1)
+    # # parser.add_argument("--train-ind", type=int, default=0)
+    # # parser.add_argument("--modelprefix", type=str, default="")
+    # # args = parser.parse_args()
+    # # train_network(
+    # #     config=args.config_path,
+    # #     shuffle=args.shuffle,
+    # #     trainingsetindex=args.train_ind,
+    # #     modelprefix=args.modelprefix,
+    # # )
+
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument("--config-path", type=str)
+    # parser.add_argument("--shuffle", type=int, default=1)
+    # parser.add_argument("--train-ind", type=int, default=0)
+    # parser.add_argument("--modelprefix", type=str, default="")
+    # args = parser.parse_args()
+
+    # cfg_path = "/Users/fabionaecht/Documents/PhD/dlc/tensorflow_pytorch/refined/20230424_nn200_tip-sam/config.yaml"
+    # cfg_path = "/Users/fabionaecht/Documents/PhD/dlc/tensorflow_pytorch/sam_pytorch_copy/20230424_nn200_tip-sam_mobile_BS1/config.yaml"
+    # cfg_path = "/Users/fabionaecht/Documents/PhD/dlc/tensorflow_pytorch/sam_pytorch_copy/20230424_nn200_tip-sam_1/config.yaml"
+    # cfg_path = "/home/zimadmin/Documents/pose_estimation_models/pytorch/20230424_nn200_tip-sam_mobile//config.yaml"
+
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--config-path", type=str)
     parser.add_argument("--shuffle", type=int, default=1)
     parser.add_argument("--train-ind", type=int, default=0)
     parser.add_argument("--modelprefix", type=str, default="")
     args = parser.parse_args()
+
+    cfg_path = "/home/zimadmin/Documents/pose_estimation_models/20230424_nn200_tip-sam/config.yaml"
+
     train_network(
-        config=args.config_path,
-        shuffle=args.shuffle,
-        trainingsetindex=args.train_ind,
-        modelprefix=args.modelprefix,
+        config=cfg_path,
+        epochs=200,
+        batch_size=32,
+        # modelprefix=args.modelprefix,
+
+        device='cuda'
+        
+        # shuffle=args.shuffle,
+        # trainingsetindex=args.train_ind,
     )
